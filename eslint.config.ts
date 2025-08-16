@@ -5,6 +5,7 @@ import { defineConfig } from 'eslint/config'
 import tsParser from '@typescript-eslint/parser'
 
 export default defineConfig([
+  pluginReact.configs.flat.recommended,
   {
     files: ['**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'], plugins: { js },
     extends: ['js/recommended'],
@@ -22,7 +23,7 @@ export default defineConfig([
       'no-trailing-spaces': 'error',
       'eol-last': ['error', 'always'],
       'no-unused-vars': 'off',
+      'react/react-in-jsx-scope': 'off',
     }
   },
-  pluginReact.configs.flat.recommended,
 ])

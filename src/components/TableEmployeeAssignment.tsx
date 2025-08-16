@@ -1,11 +1,12 @@
 import styled from 'styled-components'
 import type {FC} from 'react'
+import type {EmployeeCollaboration} from '../types/EmployeeCollaboration.ts'
 
 interface DataTableProps {
-    data: Record<string, any>[]
+    data: EmployeeCollaboration[]
 }
 
-const Table = styled.table`
+const StyledTable = styled.table`
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
@@ -23,13 +24,14 @@ const Td = styled.td`
   padding: 8px;
 `
 
-export const DataTable: FC<DataTableProps> = ({ data }) => {
+const columns = [
+  'First Employee ID', 'Second Employee ID', 'Project Id', 'Days Worked'
+]
+
+export const TableEmployeeAssignment: FC<DataTableProps> = ({ data }) => {
   if (!data.length) return null
-
-  const columns = Object.keys(data[0])
-
   return (
-    <Table>
+    <StyledTable>
       <thead>
         <tr>
           {columns.map(col => (
@@ -40,12 +42,12 @@ export const DataTable: FC<DataTableProps> = ({ data }) => {
       <tbody>
         {data.map((row, i) => (
           <tr key={i}>
-            {columns.map(col => (
-              <Td key={col}>{row[col]}</Td>
+            {Object.entries(row).map(([key, value]) => (
+              <Td key={key}>{value}</Td>
             ))}
           </tr>
         ))}
       </tbody>
-    </Table>
+    </StyledTable>
   )
 }
