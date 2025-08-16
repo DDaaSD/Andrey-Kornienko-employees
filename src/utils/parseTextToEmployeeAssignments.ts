@@ -3,7 +3,6 @@ import type {EmployeeProjectAssignment} from '../types/EmployeeProjectAssignment
 export const parseTextToEmployeeAssignments = (text: string): EmployeeProjectAssignment[] => {
   const lines = text
     .split(/\r?\n/)
-    .slice(1)
     .map(line => line.trim())
     .filter(Boolean)
 
